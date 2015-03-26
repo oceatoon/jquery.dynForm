@@ -6,7 +6,7 @@ Sample
 this is a first use case 
 I'll come back with a more detailed  presentation 
 
-'''
+```
 var form = $.dynForm({
 		formId : "#form-join",
 		formObj : {
@@ -102,7 +102,7 @@ var form = $.dynForm({
 	    	});
 		}
 	});
-	'''
+```
 
 Stuff we used , and are thankfull to
 - jquery 
