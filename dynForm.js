@@ -1,3 +1,21 @@
+/* **************************************
+
+- add a form tag to your document
+- define your dynForm with a jsonSchema defintion of each field input
+- The process will then 
+	- first build the specified HTML  for each different field and input according to types
+   - bind any needed events according to types 
+	- bind the save Process if needed 
+   - apply any onLoad process
+
+parameters : 
+formId : is the <form> tag in the destination html
+formObj: is the form object containg the form field definition and jsonSchema
+formValues: contains the values if needed 
+onLoad : (optional) is a function that is launched once the form has been created and written into the DOM 
+onSave: (optional) overloads the generic saveProcess
+
+***************************************** */
 (function($) {
 	"use strict";
 	var thisBody = document.body || document.documentElement, 
@@ -16,12 +34,11 @@
 		{
 			// extend the options from pre-defined values:
 			var defaults = {
-				formId : "",
+				formId : "", 
 				formObj: {},
 				formValues: {},
-				formHTML:"",
-				afterBuild: "",
-				onSave: null,
+				onLoad : null,
+				onSave: null
 			};
 
 			var settings = $.extend({}, defaults, options);
@@ -36,6 +53,15 @@
 				rules : {}
 			};
 			var fieldHTML = '';
+
+			/* **************************************
+			* Error Section
+			***************************************** */
+			var errorHTML = '<div class="errorHandler alert alert-danger no-display">'+
+							'<i class="fa fa-remove-sign"></i> You have some form errors. Please check below.'+
+						'</div>';
+			$(settings.formId).append(errorHTML);
+
 			$.each(settings.formObj.jsonSchema.properties,function(field,fieldObj) { 
 
 				if(fieldObj.rules)
@@ -66,6 +92,10 @@
 			var path = (settings.savePath) ? settings.savePath : '/common/save/';
 			bindDynFormEvents(settings.formId,path,settings.onSave,form.rules);
 
+			if(settings.onLoad && jQuery.isFunction( settings.onLoad ) )
+				settings.onLoad();
+		    
+
 			return form;
 		},
 
@@ -90,6 +120,7 @@
         var iconOpen = (fieldObj.icon) ? '<span class="input-icon">'   : '';
         var iconClose = (fieldObj.icon) ? '<i class="'+fieldObj.icon+'"></i> </span>' : '';
         var placeholder = (fieldObj.placeholder) ? fieldObj.placeholder+required : '';
+        var fieldClass = (fieldObj.class) ? fieldObj.class : '';
         var value = "";
         if( fieldObj.value ) 
         	value = fieldObj.value;
@@ -100,7 +131,7 @@
 		* STANDARD TEXT INPUT
 		***************************************** */
         if( !fieldObj.inputType || fieldObj.inputType == "text" || fieldObj.inputType == "numeric" ) 
-        	fieldHTML += iconOpen+'<input type="text" class="form-control" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         
         /* **************************************
 		* HIDDEN
@@ -112,7 +143,7 @@
 		* TEXTAREA
 		***************************************** */
         else if ( fieldObj.inputType == "textarea" ) 
-        	fieldHTML += '<textarea id="'+field+'" class="form-control" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
+        	fieldHTML += '<textarea id="'+field+'" class="form-control '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
         
         /* **************************************
 		* CHECKBOX
@@ -120,7 +151,7 @@
         else if ( fieldObj.inputType == "checkbox" ) {
         	if(value == "")
         		value="25/01/2014";
-        	fieldHTML += '<input type="checkbox" name="'+field+'" id="'+field+'" value="'+value+'"/> '+placeholder;
+        	fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'"/> '+placeholder;
         }
 
         /* **************************************
@@ -129,7 +160,7 @@
         else if ( fieldObj.inputType == "select" ) {
         	if(value == "")
         		value="25/01/2014";
-        	fieldHTML += '<select class="select2Input" name="'+field+'" id="'+field+'" style="width: 100%;height:30px">'+
+        	fieldHTML += '<select class="select2Input '+fieldClass+'" name="'+field+'" id="'+field+'" style="width: 100%;height:30px">'+
         					 '<option value="">'+placeholder+'</option>';
 			$.each(fieldObj.options, function(optKey, optVal) { 
 				fieldHTML += '<option value="'+optKey+'">'+optVal+'</option>';
@@ -143,7 +174,7 @@
         else if ( fieldObj.inputType == "date" ) {
         	if(placeholder == "")
         		placeholder="25/01/2014";
-        	fieldHTML += iconOpen+'<input type="text" class="form-control dateInput" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        	fieldHTML += iconOpen+'<input type="text" class="form-control dateInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
         /* **************************************
@@ -152,7 +183,7 @@
         else if ( fieldObj.inputType == "time" ) {
         	if(placeholder == "")
         		placeholder="20:30";
-        	fieldHTML += iconOpen+'<input type="text" class="form-control timeInput" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        	fieldHTML += iconOpen+'<input type="text" class="form-control timeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         }
 
         /* **************************************
@@ -161,7 +192,7 @@
         else if ( fieldObj.inputType == "link" ) {
         	if(fieldObj.url.indexOf("http://") < 0 )
         		fieldObj.url = "http://"+fieldObj.url;
-        	fieldHTML += '<a class="btn btn-primary" href="'+fieldObj.url+'">Go There</a>';
+        	fieldHTML += '<a class="btn btn-primary '+fieldClass+'" href="'+fieldObj.url+'">Go There</a>';
         }
         
 		fieldHTML += '</div>';
@@ -227,3 +258,4 @@
 	}
 
 })(jQuery);
+
