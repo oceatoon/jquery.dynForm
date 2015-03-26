@@ -111,3 +111,4 @@ Stuff we used , and are thankfull to
 - blockui
 - jquery-validation/dist/jquery.validate.min.js
 - bootstrap-datepicker.js
+- https://github.com/oceatoon/jsonHelpers
