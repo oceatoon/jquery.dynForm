@@ -12,7 +12,8 @@
 
 	$.extend({
 
-		dynForm: function(options) {
+		dynForm: function(options)
+		{
 			// extend the options from pre-defined values:
 			var defaults = {
 				formId : "",
@@ -74,7 +75,8 @@
 
 	});
 		
-	function buildInputField(field, fieldObj,formValues){
+	function buildInputField(field, fieldObj,formValues)
+	{
 		var fieldHTML = '<div class="form-group">';
 		var required = "";
 		if(fieldObj.rules && fieldObj.rules.required)
@@ -127,7 +129,7 @@
         else if ( fieldObj.inputType == "select" ) {
         	if(value == "")
         		value="25/01/2014";
-        	fieldHTML += '<select class="select2Input" name="'+field+'" id="'+field+'" style="width: 100%;height:30px"/>'+
+        	fieldHTML += '<select class="select2Input" name="'+field+'" id="'+field+'" style="width: 100%;height:30px">'+
         					 '<option value="">'+placeholder+'</option>';
 			$.each(fieldObj.options, function(optKey, optVal) { 
 				fieldHTML += '<option value="'+optKey+'">'+optVal+'</option>';
@@ -212,7 +214,7 @@
 		/* **************************************
 		* SELECTs , we use select2 lib
 		***************************************** */
-		//$(".select2Input").select2();
+		$(".select2Input").select2();
 
 		/* **************************************
 		* DATE INPUT , we use bootstrap-datepicker lib
