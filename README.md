@@ -1,5 +1,14 @@
-# dynForm
-generate Forms jquery pluggin, javascript , validation, bootstrap, json schema definition
+jquery.dynForm
+------
+
+light json based , schema oriented Form generator 
+- jquery pluggin
+- 100% javascript
+- desciption based using json-schema.org
+- Form validation
+- bootstrap designed 
+- 2 way dataBinding for Editing Forms (set form values)
+- can into any Json structure
 
 Sample 
 ------
