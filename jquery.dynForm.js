@@ -43,7 +43,8 @@ onSave: (optional) overloads the generic saveProcess
 
 			var settings = $.extend({}, defaults, options);
 			$this = this;
-			console.log("build dyn Form",settings.formId);
+
+			console.info("build Form dynamically into form tag : ",settings.formId);
 			console.dir(settings.formObj);
 
 			/* **************************************
@@ -208,6 +209,11 @@ onSave: (optional) overloads the generic saveProcess
 	var afterDynBuildSave = null;
 	function bindDynFormEvents (id, path, onSave, formRules) {  
 
+		/* **************************************
+		* FORM VALIDATION and save process binding
+		***************************************** */
+		console.info("connecting submit btn to $.validate pluggin");
+		console.dir(formRules);
 		var errorHandler = $('.errorHandler', $(id));
 		$(id).validate({
 
@@ -216,16 +222,9 @@ onSave: (optional) overloads the generic saveProcess
 			submitHandler : function(form) {
 				errorHandler.hide();
 
-				 $.blockUI({
-                    message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
-                    '<blockquote>'+
-                      "<p>Je désapprouve ce que vous dites, mais je me battrai jusqu'à la mort pour que vous ayez le droit de le dire..</p>"+
-                      '<cite title="Hegel">Voltaire</cite>'+
-                    '</blockquote> '
-                });
-
 				if(onSave && jQuery.isFunction( onSave ) ){
 					onSave();
+					return false;
 		        } else {
 		        	$.ajax({
 		        	  type: "POST",
@@ -236,8 +235,7 @@ onSave: (optional) overloads the generic saveProcess
 		              {
 		                if( afterDynBuildSave && typeof afterDynBuildSave == "function" )
 		                    afterDynBuildSave(data.map,data.id);
-		                $.unblockUI();
-		                toastr.success('saved successfully !');
+		                console.info('saved successfully !');
 		        	  }
 		        	});
 			    }
@@ -248,6 +246,7 @@ onSave: (optional) overloads the generic saveProcess
 			}
 		});
 		
+		console.info("connecting any specific input event select2, datepicker...");
 		/* **************************************
 		* SELECTs , we use select2 lib
 		***************************************** */
