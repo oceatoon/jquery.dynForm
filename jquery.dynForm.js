@@ -38,7 +38,8 @@ onSave: (optional) overloads the generic saveProcess
 				formObj: {},
 				formValues: {},
 				onLoad : null,
-				onSave: null
+				onSave: null,
+				savePath : '/ph/common/save'
 			};
 
 			var settings = $.extend({}, defaults, options);
@@ -90,8 +91,7 @@ onSave: (optional) overloads the generic saveProcess
 			/* **************************************
 			* bind any events Post building 
 			***************************************** */
-			var path = (settings.savePath) ? settings.savePath : '/common/save/';
-			bindDynFormEvents(settings.formId,path,settings.onSave,form.rules);
+			bindDynFormEvents(settings,form.rules);
 
 			if(settings.onLoad && jQuery.isFunction( settings.onLoad ) )
 				settings.onLoad();
@@ -207,39 +207,42 @@ onSave: (optional) overloads the generic saveProcess
 	}
 
 	var afterDynBuildSave = null;
-	function bindDynFormEvents (id, path, onSave, formRules) {  
+	function bindDynFormEvents (params, formRules) {  
 
 		/* **************************************
 		* FORM VALIDATION and save process binding
 		***************************************** */
 		console.info("connecting submit btn to $.validate pluggin");
 		console.dir(formRules);
-		var errorHandler = $('.errorHandler', $(id));
-		$(id).validate({
+		var errorHandler = $('.errorHandler', $(params.formId));
+		$(params.formId).validate({
 
 			rules : formRules,
 
 			submitHandler : function(form) {
 				errorHandler.hide();
 
-				if(onSave && jQuery.isFunction( onSave ) ){
-					onSave();
+				if(params.onSave && jQuery.isFunction( params.onSave ) ){
+					params.onSave();
 					return false;
 		        } else {
+		        	console.info("default SaveProcess",params.savePath);
+		        	console.dir($(params.formId).serializeFormJSON());
 		        	$.ajax({
 		        	  type: "POST",
-		        	  url: baseUrl+path,
-		        	  data: $(id).serializeFormJSON(),
-		              dataType: "json",
-		        	  success: function(data)
-		              {
+		        	  url: params.savePath,
+		        	  data: $(params.formId).serializeFormJSON(),
+		              dataType: "json"
+		        	}).done( function(data){
+		                
 		                if( afterDynBuildSave && typeof afterDynBuildSave == "function" )
 		                    afterDynBuildSave(data.map,data.id);
 		                console.info('saved successfully !');
-		        	  }
+
 		        	});
+					return false;
 			    }
-			    return false;
+			    
 			},
 			invalidHandler : function(event, validator) {//display error alert on form submit
 				errorHandler.show();
@@ -264,3 +267,18 @@ onSave: (optional) overloads the generic saveProcess
 
 })(jQuery);
 
+$.fn.serializeFormJSON = function () {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function () {
+        if (o[this.name]) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
