@@ -69,8 +69,7 @@ onSave: (optional) overloads the generic saveProcess
 				if(fieldObj.rules)
 					form.rules[field] = fieldObj.rules;//{required:true}
 				
-				fieldHTML = buildInputField(field, fieldObj, settings.formValues);
-				$(settings.formId).append(fieldHTML);
+				buildInputField(settings.formId,field, fieldObj, settings.formValues);
 			});
 			
 			/* **************************************
@@ -106,7 +105,7 @@ onSave: (optional) overloads the generic saveProcess
 
 	});
 		
-	function buildInputField(field, fieldObj,formValues)
+	function buildInputField(id, field, fieldObj,formValues)
 	{
 		var fieldHTML = '<div class="form-group">';
 		var required = "";
@@ -185,6 +184,15 @@ onSave: (optional) overloads the generic saveProcess
         }
 
         /* **************************************
+		* DATE INPUT , we use bootstrap-datepicker
+		***************************************** */
+        else if ( fieldObj.inputType == "daterange" ) {
+        	if(placeholder == "")
+        		placeholder="25/01/2014";
+        	fieldHTML += iconOpen+'<input type="text" class="form-control daterangeInput '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
+        }
+
+        /* **************************************
 		* TIME INPUT , we use 
 		***************************************** */
         else if ( fieldObj.inputType == "time" ) {
@@ -200,10 +208,24 @@ onSave: (optional) overloads the generic saveProcess
         	if(fieldObj.url.indexOf("http://") < 0 )
         		fieldObj.url = "http://"+fieldObj.url;
         	fieldHTML += '<a class="btn btn-primary '+fieldClass+'" href="'+fieldObj.url+'">Go There</a>';
-        }
+        } 
+
+        /* **************************************
+		* CUSTOM 
+		***************************************** */
+        else if ( fieldObj.inputType == "custom" ) {
+        	fieldHTML += fieldObj.html;
+        } 
+
+        else 
+        	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
         
 		fieldHTML += '</div>';
-		return fieldHTML;
+
+		$(id).append(fieldHTML);
+
+		if( fieldObj.init && $.isFunction(fieldObj.init) )
+        	fieldObj.init();
 	}
 
 	var afterDynBuildSave = null;
@@ -251,18 +273,42 @@ onSave: (optional) overloads the generic saveProcess
 		
 		console.info("connecting any specific input event select2, datepicker...");
 		/* **************************************
-		* SELECTs , we use select2 lib
+		* SELECTs , we use https://github.com/select2/select2
 		***************************************** */
-		$(".select2Input").select2();
+		if($(".select2Input")){
+			$(".select2Input").select2();
+		}
+		/* **************************************
+		* DATE INPUT , we use https://github.com/eternicode/bootstrap-datepicker
+		***************************************** */
+		if($(".dateInput")){
+			$(".dateInput").datepicker({ 
+		        autoclose: true,
+		        language: "fr",
+		        format: "dd/mm/yy"
+		    });
+		}
 
 		/* **************************************
-		* DATE INPUT , we use bootstrap-datepicker lib
+		* DATE RANGE INPUT , we use https://github.com/dangrossman/bootstrap-daterangepicker
 		***************************************** */
-		$(".dateInput").datepicker({ 
-	        autoclose: true,
-	        language: "fr",
-	        format: "dd/mm/yy"
-	    });
+		if($(".daterangeInput")){
+			$('#reservationtime').daterangepicker({
+	            timePicker: true,
+	            timePickerIncrement: 30,
+	            format: 'MM/DD/YYYY h:mm A'
+	          }, function(start, end, label) {
+	            console.log(start.toISOString(), end.toISOString(), label);
+	          });
+		    /*$('.daterangeInput').val(moment().format('DD/MM/YYYY h:mm A') + ' - ' + moment().add('days', 1).format('DD/MM/YYYY h:mm A'))
+			.daterangepicker({  
+				startDate: moment(),
+				endDate: moment().add('days', 1),
+				timePicker: true, 
+				timePickerIncrement: 30, 
+				format: 'DD/MM/YYYY h:mm A' 
+			});*/
+		}
 	}
 
 })(jQuery);
