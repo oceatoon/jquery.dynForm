@@ -26,6 +26,8 @@
 		<link rel="stylesheet" href='assets/plugins/select2/select2.css'>
 		<link rel="stylesheet" href='assets/plugins/toastr/toastr.min.css'>
 		<link rel="stylesheet" href='assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css'>
+		
+		
 		<!--[if IE 7]>
 		<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome-ie7.min.css">
 		<![endif]-->
@@ -100,8 +102,9 @@ var formDefinition = {
 	        "title" : "Open Data Form",
 	        "type" : "object",
 	        "properties" : {
+
 	        	"separator1":{
-	        		"title":"This is a Sseperator Type"
+	        		"title":"TEXT INPUT"
 	        	},
 	            "text" : {
 	                "inputType" : "text",
@@ -111,10 +114,18 @@ var formDefinition = {
 						"required" : true
 					}
 	            },
+
+	            "separator2":{
+	        		"title":"TEXTAREA INPUT"
+	        	},
 	            "textarea" :{
 	            	"inputType" : "textarea",
 	            	"placeholder" : "Input type textarea"
 	            },
+
+	            "separator3":{
+	        		"title":"SELECT INPUT"
+	        	},
 	            "select" :{
 	            	"inputType" : "select",
 	            	"placeholder" : "Input type select",
@@ -124,37 +135,83 @@ var formDefinition = {
                     	"option3":"Option3"
 	            	}
 	            },
+
+	            "separator4":{
+	        		"title":"MULTI SELECT INPUT"
+	        	},
+	            "selectMultiple" :{
+	            	"inputType" : "selectMultiple",
+	            	"placeholder" : "Thematique",
+	            	"options" : {
+	            		"sport":"Sport",
+                    	"agriculture":"Agricutlture",
+                    	"culture":"Culture",
+                    	"urbanisme":"Urbanisme",
+	            	}
+	            },
+
+	            "separator5":{
+	        		"title":"DATE INPUT"
+	        	},
 	            "date" : {
 	                "inputType" : "date",
 	                "icon" : "fa fa-calendar",
 	                "placeholder":"Input Type Date"
 	            },
-	             "date" : {
-	                "inputType" : "date",
-	                "icon" : "fa fa-calendar",
-	                "placeholder":"Input Type Date"
-	            },
+
+	            "separator6":{
+	        		"title":"DATE RANGE INPUT"
+	        	},
 	            "daterange" : {
 	                "inputType" : "daterange",
 	                "icon" : "fa fa-clock-o",
 	                "placeholder":"Input Type daterange"
 	            },
+
+	            "separator7":{
+	        		"title":"CHECKBOX INPUT"
+	        	},
 	            "checkbox" : {
 	                "inputType" : "checkbox",
 	                "placeholder" : "Input Type CheckBox with specific Class",
 	                "class":"grey"
 	            },
-	            "properties" : {
-	                "inputType" : "custom",
-	                "html":"<span class='text-red text-bold'>TODO Array type properties</span>"
-	            }
+
+	            "separator8":{
+	        		"title":"CUSTOM INPUT"
+	        	},
 	            "custom" : {
 	                "inputType" : "custom",
 	                "html":"<span class='text-red text-bold'>THIS IS A CUSTOM FIELD</span>",
 	                "init" : function(){
 	                	console.warn("init custom input");
 	                }
-	            }
+	            },
+
+	            "separator9":{
+	        		"title":"PROPERTIES INPUT"
+	        	},
+	            "properties" : {
+	                "inputType" : "properties",
+	                "html":"<span class='text-red text-bold'>TODO : Array type key value pairs</span>",
+	                "placeholder" : "Key",
+	                "placeholder2" : "Value",
+	            },
+
+	            "separator11":{
+	        		"title":"IN PROGRESS : ARRAY INPUT",
+	        	},
+	        	"array" : {
+	                "inputType" : "array",
+	                "html":"<span class='text-red text-bold'>TODO : Array type key value pairs</span>",
+	                "placeholder" : "Value",
+	            },
+
+	            "separator10":{
+	        		"title":"COMING SOON : SURVEY INPUT",
+	        		"class" : "panel-purple"
+	        	},
+	        	
 	        }
 	    },
 	    "collection" : "smartcitizen",
