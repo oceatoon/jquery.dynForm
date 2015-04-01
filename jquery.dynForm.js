@@ -160,9 +160,11 @@ onSave: (optional) overloads the generic saveProcess
         /* **************************************
 		* TEXTAREA
 		***************************************** */
-        else if ( fieldObj.inputType == "textarea" ) 
+        else if ( fieldObj.inputType == "textarea" || fieldObj.inputType == "wysiwyg" ){ 
+        	if(fieldObj.inputType == "wysiwyg")
+        		fieldClass += " wysiwygInput";
         	fieldHTML += '<textarea id="'+field+'" class="form-control '+fieldClass+'" name="'+field+'" placeholder="'+placeholder+'">'+value+'</textarea>';
-        
+        }
         /* **************************************
 		* CHECKBOX
 		***************************************** */
@@ -272,6 +274,7 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "custom" ) {
         	fieldHTML += fieldObj.html;
         } 
+ 
 
         else 
         	fieldHTML += iconOpen+'<input type="text" class="form-control '+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" placeholder="'+placeholder+'"/>'+iconClose;
@@ -399,6 +402,34 @@ onSave: (optional) overloads the generic saveProcess
 				else
 					toastr.info("please fill properties first");
 			} );
+		}
+
+		/* **************************************
+		* WYSIWYG 
+		***************************************** */
+		if(  $(".wysiwygInput").length )
+		{
+			$(".wysiwygInput").summernote({
+
+				oninit: function() {
+					if ($(this).code() == "" || $(this).code().replace(/(<([^>]+)>)/ig, "") == "") {
+						$(this).code($(this).attr("placeholder"));
+					}
+				}, onfocus: function(e) {
+					if ($(this).code() == $(this).attr("placeholder")) {
+						$(this).code("");
+					}
+				}, onblur: function(e) {
+					if ($(this).code() == "" || $(this).code().replace(/(<([^>]+)>)/ig, "") == "") {
+						$(this).code($(this).attr("placeholder"));
+					}
+				}, onkeyup: function(e) {},
+				toolbar: [
+				['style', ['bold', 'italic', 'underline', 'clear']],
+				['color', ['color']],
+				['para', ['ul', 'ol', 'paragraph']],
+				]
+			});
 		}
 	}
 
@@ -538,6 +569,19 @@ function getPairs(parentContainer)
     });
     //console.dir("getPairs",properties);
     return properties;
+}
+
+function getArray(parentContainer)
+{
+	//console.log("getArray",parentContainer);
+    var list = [];
+    $.each($(parentContainer+' .addmultifield'), function(i,el) {
+    	if( $(this).val() != ""  ){
+	        list.push( $(this).val() );
+	    }
+    });
+    //console.dir("getArray",list);
+    return list;
 }
 
 function AutoGrowTextArea(textField)

@@ -26,7 +26,7 @@
 		<link rel="stylesheet" href='assets/plugins/select2/select2.css'>
 		<link rel="stylesheet" href='assets/plugins/toastr/toastr.min.css'>
 		<link rel="stylesheet" href='assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css'>
-		
+		<link rel="stylesheet" href='assets/plugins/summernote/dist/summernote.css'>
 		
 		<!--[if IE 7]>
 		<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome-ie7.min.css">
@@ -88,7 +88,7 @@
 		<script src="assets/plugins/select2/select2.min.js"></script>
 		<script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 		<script src="assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
-		<script src="assets/plugins/moment/min/moment.min.js"></script>
+		<script src="assets/plugins/summernote/dist/summernote.min.js"></script>
 		<script src="assets/plugins/jsonHelper.js"></script>
 		<script src="../jquery.dynForm.js"></script>
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
@@ -193,18 +193,23 @@ var formDefinition = {
 	        	},
 	            "properties" : {
 	                "inputType" : "properties",
-	                "html":"<span class='text-red text-bold'>TODO : Array type key value pairs</span>",
 	                "placeholder" : "Key",
 	                "placeholder2" : "Value",
 	            },
 
 	            "separator11":{
-	        		"title":"IN PROGRESS : ARRAY INPUT",
+	        		"title":"ARRAY INPUT",
 	        	},
 	        	"array" : {
 	                "inputType" : "array",
-	                "html":"<span class='text-red text-bold'>TODO : Array type key value pairs</span>",
 	                "placeholder" : "Value",
+	            },
+
+	            "separator12":{
+	        		"title":"WYSIWYG INPUT",
+	        	},
+	        	"wysiwyg" : {
+	                "inputType" : "wysiwyg"
 	            },
 
 	            "separator10":{
