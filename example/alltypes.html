@@ -62,9 +62,10 @@
 
 			</div>
 		</div>
-<style type="text/css">
-	label.error{color:red; font-size:10px;}
-</style>
+
+		<style type="text/css">
+			label.error{color:red; font-size:10px;}
+		</style>
 
 		<!-- start: MAIN JAVASCRIPTS -->
 		<!--[if lt IE 9]>
@@ -102,6 +103,13 @@ var formDefinition = {
 	        "title" : "Open Data Form",
 	        "type" : "object",
 	        "properties" : {
+
+	        	"separator":{
+	        		"title":"HIDDEN INPUT"
+	        	},
+	            "hidden" : {
+	                "inputType" : "hidden"
+	            },
 
 	        	"separator1":{
 	        		"title":"TEXT INPUT"
@@ -148,6 +156,20 @@ var formDefinition = {
                     	"culture":"Culture",
                     	"urbanisme":"Urbanisme",
 	            	}
+	            },
+
+	            "separatortags":{
+	        		"title":"TAGS INPUT"
+	        	},
+	            "tags" :{
+	            	"inputType" : "tags",
+	            	"placeholder" : "Tags",
+	            	"values" : [
+	            		"Sport",
+                    	"Agricutlture",
+                    	"Culture",
+                    	"Urbanisme",
+	            	]
 	            },
 
 	            "separator5":{
