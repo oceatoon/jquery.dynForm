@@ -72,18 +72,18 @@
   <!--[if gte IE 9]><!-->
   <script src="assets/plugins/jquery/dist/jquery.min.js"></script>
   <!--<![endif]-->
-  <script src="assets/plugins/jquery-ui/jquery-ui.min.js"></script>
-  <script src="assets/plugins/bootstrap/dis/js/bootstrap.min.js"></script>
+  <script src="assets/plugins/jquery-ui/jquery-ui.js"></script>
+  <script src="assets/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="assets/plugins/jquery.transit/jquery.transit.js"></script>
   <script src="assets/plugins/jquery-touchswipe/jquery.touchSwipe.min.js"></script>
   <script src="assets/plugins/blockui/jquery.blockUI.js"></script>
-  <script src="assets/plugins/toastr/toastr.js"></script>
+  <script src="assets/plugins/toastr/toastr.min.js"></script>
   <!-- end: MAIN JAVASCRIPTS -->
   <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
   <script src="assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
   <script src="assets/plugins/select2/select2.min.js"></script>
   <script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-  <script src="assets/js/jsonHelper.js"></script>
+  <script src="assets/jsonHelper.js"></script>
   <script src="../jquery.dynForm.js"></script>
   <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 
@@ -92,38 +92,63 @@
 *	Describe each input of your form
 ***************************************** */
 var formDefinition = {
-     "jsonSchema" : {
-         "title" : "Open Data Form",
-         "type" : "object",
-         "properties" : {
-          "separator1":{
-           "title":"Smart Citizen"
-          },
+	    "jsonSchema" : {
+	        "title" : "Open Data Form",
+	        "type" : "object",
+	        "properties" : {
+	        	"separator1":{
+	        		"title":"Smart Citizen"
+	        	},
 
-             "temperature" : {
-                 "inputType" : "text",
-                 "placeholder" : "Température",
-                 "rules" : {
-      "required" : true
-     }
-             },
-             "pressure" :{
-              "inputType" : "text",
-              "placeholder" : "Pression Atmospherique"
-             },
-             "light" :{
-              "inputType" : "text",
-              "placeholder" : "Luminosité"
-             },
-             "date" :{
-              "inputType" : "date",
-              "placeholder" : "Date Push"
-             }
-         }
-     },
-     "collection" : "smartcitizen",
-     "key" : "SCForm"
- };
+	            "temp" : {
+	                "inputType" : "text",
+	                "placeholder" : "Température",
+	                "rules" : {
+						"required" : true
+					}
+	            },
+	            "hum" :{
+	            	"inputType" : "text",
+	            	"placeholder" : "Humidity"
+	            },
+	            "light" :{
+	            	"inputType" : "text",
+	            	"placeholder" : "Luminosité"
+	            },
+	            "bat" : {
+	                "inputType" : "text",
+	                "placeholder" : "Température"
+	            },
+	            "panel" : {
+	                "inputType" : "text",
+	                "placeholder" : "Panel"
+	            },
+	            "co" : {
+	                "inputType" : "text",
+	                "placeholder" : "Co2"
+	            },
+	            "no2" : {
+	                "inputType" : "text",
+	                "placeholder" : "Azot"
+	            },
+	            "noise" : {
+	                "inputType" : "text",
+	                "placeholder" : "Noise"
+	            },
+	            "nets" : {
+	                "inputType" : "text",
+	                "placeholder" : "Nets"
+	            },
+	            "timestamp" :{
+	            	"inputType" : "date",
+	            	"placeholder" : "Date Push"
+	            }
+
+	        }
+	    },
+	    "collection" : "smartcitizen",
+	    "key" : "SCForm"
+	};
 
 
 jQuery(document).ready(function() {

@@ -4,6 +4,7 @@
 <!--[if IE 9]><html class="ie9 no-js" lang="en"><![endif]-->
 <!--[if !IE]><!-->
 <html lang="en" class="no-js">
+
  <!--<![endif]-->
  <!-- start: HEAD -->
  <head>
@@ -36,14 +37,43 @@
  <!-- start: BODY -->
  <body style="background-color:#1F212F">
   <div class="row">
+	<!--<![endif]-->
+	<!-- start: HEAD -->
+	<head>
+		<title>DynForm Sample</title>
+		<!-- start: META -->
+		<meta charset="utf-8" />
+		<!--[if IE]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta content="" name="description" />
+		<meta content="oceatoon" name="author" />
+		<!-- end: META -->
+		<!-- start: MAIN CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/styles-responsive.css">
+	</head>
+	<!-- end: HEAD -->
+	<!-- start: BODY -->
+	<body style="background-color:#1F212F">
+		<div class="row">
 
    <div class="space20"></div>
 
-   <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+			<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 
-    <div class="panel-white padding-20">
+				<div class="panel-white padding-20">
 
-     <h3>Sample Form</h3>
+					<h3>Sample List</h3>
+
+					<ul class=" padding-20" style="border:1px dashed #666">
+						<li class="margin-10"> <a href="alltypes.html" target="_blank" class="btn btn-xs btn-default">allTypes.html</a> : Form show casing all types of inputs </li>
+						<li> <a href="basic.html" target="_blank" class="btn btn-xs btn-default">basic.html</a> : very simple usage of fields</li>
+						<li> <a href="organizationJoin.html" target="_blank" class="btn btn-xs btn-default">organizationJoin.html</a> : Form show casing form Definition, onLoad, onSave Events </li>
+					</ul>
 
      <form id="form-join"></form>
 
@@ -63,221 +93,18 @@
  label.error{color:red; font-size:10px;}
 </style>
 
-  <!-- start: MAIN JAVASCRIPTS -->
-  <!--[if lt IE 9]>
-  <script src="assets/plugins/respond.min.js"></script>
-  <script src="assets/plugins/excanvas.min.js"></script>
-  <script type="text/javascript" src="assets/plugins/jQuery/jquery-1.11.1.min.js"></script>
-  <![endif]-->
-  <!--[if gte IE 9]><!-->
-  <script src="assets/plugins/jquery/dist/jquery.min.js"></script>
-  <!--<![endif]-->
-  <script src="assets/plugins/jquery-ui/jquery-ui.min.js"></script>
-  <script src="assets/plugins/bootstrap/dis/js/bootstrap.min.js"></script>
-  <script src="assets/plugins/jquery.transit/jquery.transit.js"></script>
-  <script src="assets/plugins/jquery-touchswipe/jquery.touchSwipe.min.js"></script>
-  <script src="assets/plugins/blockui/jquery.blockUI.js"></script>
-  <script src="assets/plugins/toastr/toastr.js"></script>
-  <!-- end: MAIN JAVASCRIPTS -->
-  <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-  <script src="assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
-  <script src="assets/plugins/select2/select2.min.js"></script>
-  <script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-  <script src="assets/js/jsonHelper.js"></script>
-  <script src="../jquery.dynForm.js"></script>
-  <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+		<!-- start: MAIN JAVASCRIPTS -->
+		<!--[if lt IE 9]>
+		<script src="assets/plugins/respond.min.js"></script>
+		<script src="assets/plugins/excanvas.min.js"></script>
+		<script type="text/javascript" src="assets/plugins/jQuery/jquery-1.11.1.min.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+    <script src="assets/plugins/jquery/dist/jquery.min.js"></script>
+		<!--<![endif]-->
+    <script src="assets/plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="assets/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<script type="text/javascript">
-/* **************************************
-*	Describe each input of your form
-***************************************** */
-var formDefinition = {
-     "jsonSchema" : {
-         "title" : "Todyn Form",
-         "type" : "object",
-         "properties" : {
-          "separator1":{
-           "title":"Organization"
-          },
-
-             "organizationName" : {
-                 "inputType" : "text",
-                 "icon" : "fa fa-group",
-                 "placeholder" : "Name of your Organization",
-                 "rules" : {
-      "required" : true
-     }
-             },
-             "description" :{
-              "inputType" : "textarea",
-              "placeholder" : "Describe your Organization"
-             },
-             "type" :{
-              "inputType" : "select",
-              "placeholder" : "Describe your Organization",
-              "options" : {
-               "NGO":"NGO",
-                     "LocalBusiness":"Local Businesse",
-                     "Groups":"Group"
-              }
-             },
-             "postalCode" : {
-                 "inputType" : "text",
-                 "icon" : "fa fa-map-marker",
-                 "placeholder":"Postal Code",
-                 "rules" : {
-      "required" : true
-     }
-             },
-             "organizationEmail" : {
-                 "inputType" : "text",
-                 "icon" : "fa fa-envelope",
-                 "placeholder":"Organization Email"
-             },
-             "separator2":{
-           "title":"Person"
-          },
-             "personName" : {
-                 "inputType" : "text",
-                 "icon" : "fa fa-user",
-                 "placeholder":"Your Name"
-             },
-             "personEmail" : {
-                 "inputType" : "text",
-                 "icon" : "fa fa-envelope",
-                 "placeholder":"Your Email"
-             },
-             "isOrgaAdmin" : {
-                 "inputType" : "checkbox",
-                 "placeholder" : "I am the main contact of this organization",
-                 "class":"grey"
-             }
-         }
-     },
-     "collection" : "todos",
-     "key" : "todoForm",
-     //"savePath":moduleId+""
- };
-
-/* **************************************
-*	You can Preset fields of the form or for editing
-***************************************** */
-var organizationInitData = {
- "organizationEmail" : "toto@gogo.com",
- "address": {
-  "postalCode":"97400"
- }
-};
-
-/* **************************************
-*	You can define a Json schema as an endpoint  after Save
-***************************************** */
-var dataBindOrganization = {
-    "parentOrganisation": {"value":"<?php echo $_GET['id'] ?>"},
-    "#organizationEmail" : "organizationEmail" ,
-       "#organizationName" : "organizationName",
-       "#postalCode" : "address.postalCode",
-       "#organizationCountry" : {"value":"Réunion"},
-       "#type" : "type",
-       "#description" : "description",
-       "#personName" : "personName",
-       "#personEmail" : "personEmail"
-};
-
-jQuery(document).ready(function() {
- $('.box-join').show().addClass("animated flipInX").on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-  $(this).removeClass("animated flipInX");
- });
-
- /* **************************************
- *	Using the dynForm
- - declare a destination point
- - a formDefinition
- - the onLoad method
- - the onSave method
- ***************************************** */
- var form = $.dynForm({
-  formId : "#form-join",
-  formObj : formDefinition,
-  onLoad : function  () {
-   toastr.info('Form is build! check console for details');
-   console.info("on Load connects Organization Data !!");
-   /*
-   here you can load anythnig into your form fields
-   it is called after creation
-   */
-   $.each(dataBindOrganization,function(field,path){
-    if(field != ""){
-     var val = jsonHelper.getValueByPath( organizationInitData, path );
-     if(val){
-      $(field).val(val);
-      console.log("field key",field);
-     }
-    }
-   });
-   toastr.info('Form is filled!');
-  },
-  onSave : function(){
-   console.info("saving Organization!!");
-   var organization = {};
-   $.each(dataBindOrganization,function(field,path){
-    //console.log("save key ",field,path);
-    if(field != "" )
-    {
-     if( $(field) && $(field).val() && $(field).val() != "" )
-     {
-      value = $(field).val();
-      jsonHelper.setValueByPath( organization, path, value );
-     }
-    }
-    else
-     console.error("save Error",field);
-   });
-   console.info("saved Object");
-   console.dir(organization);
-   toastr.success('Check your console!');
-   $.unblockUI();
-   return false;
-   /*var params = {
-      "parentOrganisation":"<?php echo $_GET['id'] ?>",
-      "organizationEmail" : $("#organizationEmail").val() ,
-               "organizationName" : $("#organizationName").val(),
-               "postalCode" : $("#postalCode").val(),
-               "organizationCountry" : "Réunion",
-               "type" : $("#type").val(),
-               "description" : $("#description").val(),
-               "personName" : $("#personName").val(),
-               "personEmail" : $("#personEmail").val()
-            };
-
-      $.blockUI({
-                    message : '<i class="fa fa-spinner fa-spin"></i> Processing... <br/> '+
-                    '<blockquote>'+
-                      "<p>Nothing can kill an open source project who's time has come..</p>"+
-                      '<cite>Richard Hugo & Victor Stallman</cite>'+
-                    '</blockquote> '
-                });
-
-      $.ajax({
-        type: "POST",
-        url: baseUrl+"/<?php echo $this->module->id?>/organization/saveNewAddMember",
-        data: params,
-        dataType: "json"
-      }).done(function(data){
-       if(data.result)
-           window.location.reload();
-       else
-       {
-        $.unblockUI();
-     $('.errorHandler').html(data.msg);
-     $('.errorHandler').show();
-       }
-      });*/
-  }
- });
-});
-
-</script>
- </body>
- <!-- end: BODY -->
+	</body>
+	<!-- end: BODY -->
 </html>

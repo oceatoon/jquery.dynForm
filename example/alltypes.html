@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<!-- Template Name: Rapido - Responsive Admin Template build with Twitter Bootstrap 3.x Version: 1.0 Author: ClipTheme -->
+<!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
+<!--[if IE 9]><html class="ie9 no-js" lang="en"><![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js">
+	<!--<![endif]-->
+	<!-- start: HEAD -->
+	<head>
+		<title>DynForm Sample</title>
+		<!-- start: META -->
+		<meta charset="utf-8" />
+		<!--[if IE]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta content="" name="description" />
+		<meta content="oceatoon" name="author" />
+		<!-- end: META -->
+		<!-- start: MAIN CSS -->
+		<link rel="stylesheet" href="assets/plugins/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="assets/plugins/animate.css/animate.min.css">
+		<link rel="stylesheet" href="assets/css/styles.css">
+		<link rel="stylesheet" href="assets/css/styles-responsive.css">
+		<link rel="stylesheet" href='assets/plugins/select2/select2.css'>
+		<link rel="stylesheet" href='assets/plugins/toastr/toastr.min.css'>
+		<link rel="stylesheet" href='assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css'>
+		<link rel="stylesheet" href='assets/plugins/summernote/dist/summernote.css'>
+
+		<!--[if IE 7]>
+		<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome-ie7.min.css">
+		<![endif]-->
+		<!-- end: MAIN CSS -->
+		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
+		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
+	</head>
+	<!-- end: HEAD -->
+	<!-- start: BODY -->
+	<body style="background-color:#1F212F">
+		<div class="row">
+
+			<div class="space20"></div>
+
+			<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+
+				<div class="panel-white padding-20">
+
+					<h3>Sample Form</h3>
+
+					<form id="opendata"></form>
+
+					<div class="space20"></div>
+					Notice :
+					<ul class=" padding-20" style="border:1px dashed #666">
+						<li> read your console </li>
+						<li> no on Load</li>
+						<li> uses the generic Save Process and the SavePath</li>
+					</ul>
+
+				</div>
+
+			</div>
+		</div>
+
+		<style type="text/css">
+			label.error{color:red; font-size:10px;}
+		</style>
+
+		<!-- start: MAIN JAVASCRIPTS -->
+		<!--[if lt IE 9]>
+		<script src="assets/plugins/respond.min.js"></script>
+		<script src="assets/plugins/excanvas.min.js"></script>
+		<script type="text/javascript" src="assets/plugins/jQuery/jquery-1.11.1.min.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="assets/plugins/jquery/dist/jquery.min.js"></script>
+		<!--<![endif]-->
+		<script src="assets/plugins/jquery-ui/jquery-ui.js"></script>
+		<script src="assets/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="assets/plugins/jquery.transit/jquery.transit.js"></script>
+		<script src="assets/plugins/jquery-touchswipe/jquery.touchSwipe.min.js"></script>
+		<script src="assets/plugins/blockui/jquery.blockUI.js"></script>
+		<script src="assets/plugins/toastr/toastr.min.js"></script>
+
+		<!-- end: MAIN JAVASCRIPTS -->
+		<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+		<script src="assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+		<script src="assets/plugins/select2/select2.min.js"></script>
+		<script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+		<script src="assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+		<script src="assets/plugins/summernote/dist/summernote.min.js"></script>
+		<script src="assets/jsonHelper.js"></script>
+		<script src="../jquery.dynForm.js"></script>
+		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+
+<script type="text/javascript">
+/* **************************************
+*	Describe each input of your form
+***************************************** */
+var formDefinition = {
+	    "jsonSchema" : {
+	        "title" : "Open Data Form",
+	        "type" : "object",
+	        "properties" : {
+
+	        	"separator":{
+	        		"title":"HIDDEN INPUT"
+	        	},
+	            "hidden" : {
+	                "inputType" : "hidden"
+	            },
+
+	        	"separator1":{
+	        		"title":"TEXT INPUT"
+	        	},
+	            "text" : {
+	                "inputType" : "text",
+	                "icon" : "fa fa-group",
+	                "placeholder" : "Input Type Text and Required",
+	                "rules" : {
+						"required" : true
+					}
+	            },
+
+	            "separator2":{
+	        		"title":"TEXTAREA INPUT"
+	        	},
+	            "textarea" :{
+	            	"inputType" : "textarea",
+	            	"placeholder" : "Input type textarea"
+	            },
+
+	            "separator3":{
+	        		"title":"SELECT INPUT"
+	        	},
+	            "select" :{
+	            	"inputType" : "select",
+	            	"placeholder" : "Input type select",
+	            	"options" : {
+	            		"option1":"Option1",
+                    	"option2":"Option2",
+                    	"option3":"Option3"
+	            	}
+	            },
+
+	            "separator4":{
+	        		"title":"MULTI SELECT INPUT"
+	        	},
+	            "selectMultiple" :{
+	            	"inputType" : "selectMultiple",
+	            	"placeholder" : "Thematique",
+	            	"options" : {
+	            		"sport":"Sport",
+                    	"agriculture":"Agricutlture",
+                    	"culture":"Culture",
+                    	"urbanisme":"Urbanisme",
+	            	}
+	            },
+
+	            "separatortags":{
+	        		"title":"TAGS INPUT"
+	        	},
+	            "tags" :{
+	            	"inputType" : "tags",
+	            	"placeholder" : "Tags",
+	            	"values" : [
+	            		"Sport",
+                    	"Agricutlture",
+                    	"Culture",
+                    	"Urbanisme",
+	            	]
+	            },
+
+	            "separator5":{
+	        		"title":"DATE INPUT"
+	        	},
+	            "date" : {
+	                "inputType" : "date",
+	                "icon" : "fa fa-calendar",
+	                "placeholder":"Input Type Date"
+	            },
+
+	            "separator6":{
+	        		"title":"DATE RANGE INPUT"
+	        	},
+	            "daterange" : {
+	                "inputType" : "daterange",
+	                "icon" : "fa fa-clock-o",
+	                "placeholder":"Input Type daterange"
+	            },
+
+	            "separator7":{
+	        		"title":"CHECKBOX INPUT"
+	        	},
+	            "checkbox" : {
+	                "inputType" : "checkbox",
+	                "placeholder" : "Input Type CheckBox with specific Class",
+	                "class":"grey"
+	            },
+
+	            "separator8":{
+	        		"title":"CUSTOM INPUT"
+	        	},
+	            "custom" : {
+	                "inputType" : "custom",
+	                "html":"<span class='text-red text-bold'>THIS IS A CUSTOM FIELD</span>",
+	                "init" : function(){
+	                	console.warn("init custom input");
+	                }
+	            },
+
+	            "separator9":{
+	        		"title":"PROPERTIES INPUT"
+	        	},
+	            "properties" : {
+	                "inputType" : "properties",
+	                "placeholder" : "Key",
+	                "placeholder2" : "Value",
+	            },
+
+	            "separator11":{
+	        		"title":"ARRAY INPUT",
+	        	},
+	        	"array" : {
+	                "inputType" : "array",
+	                "placeholder" : "Value",
+	            },
+
+	            "separator12":{
+	        		"title":"WYSIWYG INPUT",
+	        	},
+	        	"wysiwyg" : {
+	                "inputType" : "wysiwyg"
+	            },
+
+	            "separator10":{
+	        		"title":"COMING SOON : SURVEY INPUT",
+	        		"class" : "panel-purple"
+	        	},
+
+	        }
+	    },
+	    "collection" : "smartcitizen",
+	    "key" : "SCForm"
+	};
+
+
+jQuery(document).ready(function() {
+	$('.box-join').show().addClass("animated flipInX").on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+		$(this).removeClass("animated flipInX");
+	});
+
+	/* **************************************
+	*	Using the dynForm
+	- declare a destination point
+	- a formDefinition
+	- the onLoad method
+	- the onSave method
+	***************************************** */
+	var form = $.dynForm({
+		formId : "#opendata",
+		formObj : formDefinition,
+		//"savePath":"/ph/common/opendata"
+	});
+
+});
+
+</script>
+	</body>
+	<!-- end: BODY -->
+</html>
