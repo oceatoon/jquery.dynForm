@@ -4,6 +4,39 @@
 <!--[if IE 9]><html class="ie9 no-js" lang="en"><![endif]-->
 <!--[if !IE]><!-->
 <html lang="en" class="no-js">
+
+ <!--<![endif]-->
+ <!-- start: HEAD -->
+ <head>
+  <title>DynForm Sample</title>
+  <!-- start: META -->
+  <meta charset="utf-8" />
+  <!--[if IE]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta content="" name="description" />
+  <meta content="oceatoon" name="author" />
+  <!-- end: META -->
+  <!-- start: MAIN CSS -->
+  <link rel="stylesheet" href="assets/plugins/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/plugins/animate.css/animate.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/styles-responsive.css">
+  <link rel="stylesheet" href='assets/plugins/select2/select2.css'>
+  <link rel="stylesheet" href='assets/plugins/toastr/toastr.min.css'>
+  <!--[if IE 7]>
+  <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome-ie7.min.css">
+  <![endif]-->
+  <!-- end: MAIN CSS -->
+  <!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
+  <!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
+ </head>
+ <!-- end: HEAD -->
+ <!-- start: BODY -->
+ <body style="background-color:#1F212F">
+  <div class="row">
 	<!--<![endif]-->
 	<!-- start: HEAD -->
 	<head>
@@ -18,36 +51,46 @@
 		<meta content="oceatoon" name="author" />
 		<!-- end: META -->
 		<!-- start: MAIN CSS -->
-		<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="assets/css/styles.css">
-		<link rel="stylesheet" href="assets/css/styles-responsive.css">
+    <link rel="stylesheet" href="assets/plugins/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/styles-responsive.css">
 	</head>
 	<!-- end: HEAD -->
 	<!-- start: BODY -->
 	<body style="background-color:#1F212F">
 		<div class="row">
 
-			<div class="space20"></div>
+   <div class="space20"></div>
 
 			<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-				
+
 				<div class="panel-white padding-20">
-					
+
 					<h3>Sample List</h3>
 
 					<ul class=" padding-20" style="border:1px dashed #666">
-						<li class="margin-10"> <a href="allTypes.html" target="_blank" class="btn btn-xs btn-default">allTypes.html</a> : Form show casing all types of inputs </li>
+						<li class="margin-10"> <a href="alltypes.html" target="_blank" class="btn btn-xs btn-default">allTypes.html</a> : Form show casing all types of inputs </li>
 						<li> <a href="basic.html" target="_blank" class="btn btn-xs btn-default">basic.html</a> : very simple usage of fields</li>
 						<li> <a href="organizationJoin.html" target="_blank" class="btn btn-xs btn-default">organizationJoin.html</a> : Form show casing form Definition, onLoad, onSave Events </li>
 					</ul>
 
-				</div>
+     <form id="form-join"></form>
 
-			</div>
-		</div>
+     <div class="space20"></div>
+     Notice :
+     <ul class=" padding-20" style="border:1px dashed #666">
+      <li> read your console </li>
+      <li> on Load fills fields Organization Name and Email based on organizationInitData</li>
+      <li> on Save, the resulting json is shown in console based on the endpoint format dataBindOrganization</li>
+     </ul>
+
+    </div>
+
+   </div>
+  </div>
 <style type="text/css">
-	label.error{color:red; font-size:10px;}
+ label.error{color:red; font-size:10px;}
 </style>
 
 		<!-- start: MAIN JAVASCRIPTS -->
@@ -57,11 +100,10 @@
 		<script type="text/javascript" src="assets/plugins/jQuery/jquery-1.11.1.min.js"></script>
 		<![endif]-->
 		<!--[if gte IE 9]><!-->
-		<script src="assets/plugins/jQuery/jquery-2.1.1.min.js"></script>
+    <script src="assets/plugins/jquery/dist/jquery.min.js"></script>
 		<!--<![endif]-->
-		<script src="assets/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>
-		<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
+    <script src="assets/plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="assets/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
 
 	</body>
 	<!-- end: BODY -->
