@@ -179,7 +179,8 @@ onSave: (optional) overloads the generic saveProcess
         else if ( fieldObj.inputType == "checkbox" ) {
         	if(value == "")
         		value="25/01/2014";
-        	fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'"/> '+placeholder;
+        	var checked = ( fieldObj.checked ) ? "checked" : "";
+        	fieldHTML += '<input type="checkbox" class="'+fieldClass+'" name="'+field+'" id="'+field+'" value="'+value+'" '+checked+'/> '+placeholder;
         }
 
         /* **************************************
@@ -187,10 +188,12 @@ onSave: (optional) overloads the generic saveProcess
 		***************************************** */
         else if ( fieldObj.inputType == "select" || fieldObj.inputType == "selectMultiple" ) {
         	var multiple = (fieldObj.inputType == "selectMultiple") ? 'multiple="multiple"' : '';
-        	fieldHTML += '<select class="select2Input '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px">'+
-        					 '<option value="">'+placeholder+'</option>';
-			$.each(fieldObj.options, function(optKey, optVal) { 
-				fieldHTML += '<option value="'+optKey+'">'+optVal+'</option>';
+        	fieldHTML += '<select class="select2Input '+fieldClass+'" '+multiple+' name="'+field+'" id="'+field+'" style="width: 100%;height:30px" data-placeholder="'+placeholder+'">';
+			fieldHTML += '<option></option>';
+			
+			$.each(fieldObj.options, function(optKey, optVal) {
+				selected = ( fieldObj.value && optVal == fieldObj.value ) ? "selected" : ""; 
+				fieldHTML += '<option value="'+optKey+'" '+selected+'>'+optVal+'</option>';
 			});	
 			fieldHTML += '</select>';
         }
